@@ -6,6 +6,6 @@ class ItemSulfurasUpdater extends ItemUpdater
 {
     public function update()
     {
-        // Quality not change (only down)
+        return $this->item;
     }
 }
