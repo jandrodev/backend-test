@@ -19,6 +19,17 @@ class Item
      */
     public int $quality;
 
+    public const NAME_AGED = 'Aged Brie';
+    public const NAME_BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+    public const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
+
+    public const SELL_IN_MIN = 0;
+    public const SELL_IN_MED = 6;
+    public const SELL_IN_MAX = 11;
+
+    public const QUALITY_MIN = 0;
+    public const QUALITY_MAX = 50;
+
     /**
      * Item constructor.
      *
@@ -31,10 +42,5 @@ class Item
         $this->name = $name;
         $this->sellIn = $sellIn;
         $this->quality = $quality;
-    }
-
-    public function __toString()
-    {
-        return "{$this->name}, {$this->sellIn}, {$this->quality}";
     }
 }

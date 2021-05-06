@@ -4,9 +4,25 @@ namespace Runroom\GildedRose;
 
 class GildedRose
 {
-    private $items;
+    /*
+     * @var array
+     */
+    private array $items;
 
+    /**
+     * GildedRose constructor.
+     *
+     * @param $items
+     */
     public function __construct($items)
+    {
+        $this->setItems($items);
+    }
+
+    /**
+     * @param array $items
+     */
+    public function setItems(array $items)
     {
         $this->items = $items;
     }
@@ -14,45 +30,45 @@ class GildedRose
     public function updateQuality()
     {
         foreach ($this->items as $item) {
-            if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                if ($item->quality > 0) {
-                    if ($item->name != 'Sulfuras, Hand of Ragnaros') {
+            if ($item->name != Item::NAME_AGED and $item->name != Item::NAME_BACKSTAGE) {
+                if ($item->quality > Item::QUALITY_MIN) {
+                    if ($item->name != Item::NAME_SULFURAS) {
                         $item->quality -= 1;
                     }
                 }
-            } elseif ($item->quality < 50) {
+            } elseif ($item->quality < Item::QUALITY_MAX) {
                 $item->quality = $item->quality + 1;
-                if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
-                    if ($item->sellIn < 11) {
-                        if ($item->quality < 50) {
+                if ($item->name == Item::NAME_BACKSTAGE) {
+                    if ($item->sellIn < Item::SELL_IN_MAX) {
+                        if ($item->quality < Item::QUALITY_MAX) {
                             $item->quality = $item->quality + 1;
                         }
                     }
-                    if ($item->sellIn < 6) {
-                        if ($item->quality < 50) {
+                    if ($item->sellIn < Item::SELL_IN_MED) {
+                        if ($item->quality < Item::QUALITY_MAX) {
                             $item->quality += 1;
                         }
                     }
                 }
             }
 
-            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
+            if ($item->name != Item::NAME_SULFURAS) {
                 $item->sellIn -= 1;
             }
 
-            if ($item->sellIn < 0) {
-                if ($item->name != 'Aged Brie') {
-                    if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-                        if ($item->quality > 0) {
-                            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
+            if ($item->sellIn < Item::SELL_IN_MIN) {
+                if ($item->name != Item::NAME_AGED) {
+                    if ($item->name != Item::NAME_BACKSTAGE) {
+                        if ($item->quality > Item::QUALITY_MIN) {
+                            if ($item->name != Item::NAME_SULFURAS) {
                                 $item->quality -= 1;
                             }
                         }
                     } else {
                         $item->quality -= $item->quality;
                     }
-                } elseif ($item->quality < 50) {
-                    $item->quality += 1;
+                } elseif ($item->quality < Item::QUALITY_MAX) {
+                    ++$item->quality;
                 }
             }
         }
