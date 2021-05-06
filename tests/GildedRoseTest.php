@@ -16,6 +16,18 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(4, $items[0]->quality);
     }
 
+    public function testTwoItemsDegradeQuality(): void
+    {
+        $item1 = ItemFactory::create('', 1, 5);
+        $item2 = ItemFactory::create('', 1, 5);
+        $items = [$item1, $item2];
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
+
+        $this->assertEquals(4, $items[0]->quality);
+        $this->assertEquals(4, $items[1]->quality);
+    }
+
     public function testItemsDegradeDoubleQualityOnceTheSellInDateHasPass(): void
     {
         $items = ItemFactory::create('', -1, 5)->toArray();
