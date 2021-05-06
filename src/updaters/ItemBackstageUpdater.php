@@ -10,6 +10,14 @@ class ItemBackstageUpdater extends ItemUpdater
     {
         $this->upQuality();
 
+        if ($this->item->sellIn < Item::SELL_IN_MAX) {
+            $this->upQuality();
+        }
+
+        if ($this->item->sellIn < Item::SELL_IN_MED) {
+            $this->upQuality();
+        }
+
         return $this->item;
     }
 

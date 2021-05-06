@@ -6,7 +6,10 @@ use Runroom\GildedRose\Item;
 
 class ItemUpdater
 {
-    protected $item;
+    /*
+     * @var Item
+     */
+    protected Item $item;
 
     /**
      * ItemUpdater constructor.
