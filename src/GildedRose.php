@@ -16,14 +16,6 @@ class GildedRose
      */
     public function __construct(array $items)
     {
-        $this->setItems($items);
-    }
-
-    /**
-     * @param array $items
-     */
-    public function setItems(array $items)
-    {
         $this->items = $items;
     }
 
@@ -47,7 +39,7 @@ class GildedRose
         return $itemOrganized->update();
     }
 
-    public function updateQualityOld()
+    public function updateQualityOld(): void
     {
         foreach ($this->items as $item) {
             if ($item->name != Item::NAME_AGED and $item->name != Item::NAME_BACKSTAGE) {

@@ -71,6 +71,9 @@ alias pu="phpunit"
 alias puf="phpunit --filter"
 alias pud='phpunit --debug'
 
+alias psalm="./vendor/bin/psalm"
+alias phpstan="./vendor/bin/phpstan"
+
 # Xvfb
 alias xvfb="Xvfb -ac :0 -screen 0 1024x768x16 &"
 

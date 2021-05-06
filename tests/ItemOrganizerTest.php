@@ -55,12 +55,4 @@ class ItemOrganizerTest extends TestCase
 
         $this->assertInstanceOf(ItemUpdater::class, $categorize);
     }
-
-    public function testItemWithoutNameReturnYourUpdater(): void
-    {
-        $item = ItemFactory::create('', 0, 0);
-        $categorize = $this->itemOrganizer->categorize($item);
-
-        $this->assertInstanceOf(ItemUpdater::class, $categorize);
-    }
 }

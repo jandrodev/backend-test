@@ -7,10 +7,7 @@ use Runroom\GildedRose\{factories\GildedRoseFactory, factories\ItemFactory, Item
 
 class GildedRoseTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function itemsDegradeQuality()
+    public function testItemsDegradeQuality(): void
     {
         $items = [ItemFactory::create('', 1, 5)];
 
@@ -20,10 +17,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(4, $items[0]->quality);
     }
 
-    /**
-     * @test
-     */
-    public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass()
+    public function testItemsDegradeDoubleQualityOnceTheSellInDateHasPass(): void
     {
         $items = [ItemFactory::create('', -1, 5)];
 
@@ -33,10 +27,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(3, $items[0]->quality);
     }
 
-    /**
-     * @test
-     */
-    public function itemsCannotHaveNegativeQuality()
+    public function testItemsCannotHaveNegativeQuality(): void
     {
         $items = [ItemFactory::create('', 0, 0)];
 
@@ -46,10 +37,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(0, $items[0]->quality);
     }
 
-    /**
-     * @test
-     */
-    public function agedBrieIncreasesQualityOverTime()
+    public function testAgedBrieIncreasesQualityOverTime(): void
     {
         $items = [ItemFactory::create(Item::NAME_AGED, 0, 5)];
 
@@ -59,10 +47,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(7, $items[0]->quality);
     }
 
-    /**
-     * @test
-     */
-    public function qualityCannotBeGreaterThan50()
+    public function testQualityCannotBeGreaterThan50(): void
     {
         $items = [ItemFactory::create(Item::NAME_AGED, 0, 50)];
 
@@ -72,10 +57,7 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(50, $items[0]->quality);
     }
 
-    /**
-     * @test
-     */
-    public function sulfurasDoesNotChange()
+    public function testSulfurasDoesNotChange(): void
     {
         $items = [ItemFactory::create(Item::NAME_SULFURAS, 10, 10)];
 
@@ -86,7 +68,10 @@ class GildedRoseTest extends TestCase
         $this->assertEquals(10, $items[0]->quality);
     }
 
-    public static function backstageRules()
+    /**
+     * @return int[][]
+     */
+    public static function backstageRules(): array
     {
         return [
             'incr. 1 if sellIn > 10' => [11, 10, 11],
@@ -101,9 +86,8 @@ class GildedRoseTest extends TestCase
 
     /**
      * @dataProvider backstageRules
-     * @test
      */
-    public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
+    public function testBackstageQualityIncreaseOverTimeWithCertainRules(int $sellIn, int $quality, int $expected): void
     {
         $items = [ItemFactory::create(Item::NAME_BACKSTAGE, $sellIn, $quality)];
 
