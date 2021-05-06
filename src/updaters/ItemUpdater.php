@@ -20,12 +20,26 @@ class ItemUpdater
 
     public function update()
     {
-        $this->downQuality();
+        $this->updateQuality();
         $this->downSellIn();
 
         if ($this->item->sellIn < Item::SELL_IN_MIN) {
-            $this->downQuality();
+            $this->updateExpired();
         }
+
+        return $this->item;
+    }
+
+    public function updateQuality()
+    {
+        $this->downQuality();
+
+        return $this->item;
+    }
+
+    public function updateExpired()
+    {
+        $this->downQuality();
 
         return $this->item;
     }
