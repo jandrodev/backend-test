@@ -6,7 +6,10 @@ use Runroom\GildedRose\Item;
 
 class ItemBackstageUpdater extends ItemUpdater
 {
-    public function updateQuality()
+    /**
+     * @return Item
+     */
+    public function updateQuality(): Item
     {
         $this->upQuality();
 
@@ -21,7 +24,10 @@ class ItemBackstageUpdater extends ItemUpdater
         return $this->item;
     }
 
-    public function updateExpired()
+    /**
+     * @return Item
+     */
+    public function updateExpired(): Item
     {
         $this->item->quality = Item::QUALITY_MIN;
 

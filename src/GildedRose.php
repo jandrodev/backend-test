@@ -34,7 +34,12 @@ class GildedRose
         }
     }
 
-    public function updateItem($item)
+    /**
+     * @param $item
+     *
+     * @return Item
+     */
+    public function updateItem($item): Item
     {
         $organizer = new ItemOrganizer();
         $itemOrganized = $organizer->categorize($item);

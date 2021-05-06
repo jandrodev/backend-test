@@ -2,16 +2,24 @@
 
 namespace Runroom\GildedRose\Updaters;
 
+use Runroom\GildedRose\Item;
+
 class ItemAgedUpdater extends ItemUpdater
 {
-    public function updateQuality()
+    /**
+     * @return Item
+     */
+    public function updateQuality(): Item
     {
         $this->upQuality();
 
         return $this->item;
     }
 
-    public function updateExpired()
+    /**
+     * @return Item
+     */
+    public function updateExpired(): Item
     {
         $this->upQuality();
 

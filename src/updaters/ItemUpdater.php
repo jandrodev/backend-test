@@ -21,7 +21,10 @@ class ItemUpdater
         $this->item = $item;
     }
 
-    public function update()
+    /**
+     * @return Item
+     */
+    public function update(): Item
     {
         $this->updateQuality();
         $this->downSellIn();
@@ -33,21 +36,30 @@ class ItemUpdater
         return $this->item;
     }
 
-    public function updateQuality()
+    /**
+     * @return Item
+     */
+    public function updateQuality(): Item
     {
         $this->downQuality();
 
         return $this->item;
     }
 
-    public function updateExpired()
+    /**
+     * @return Item
+     */
+    public function updateExpired(): Item
     {
         $this->downQuality();
 
         return $this->item;
     }
 
-    protected function upQuality()
+    /**
+     * @return Item
+     */
+    protected function upQuality(): Item
     {
         if ($this->item->quality < Item::QUALITY_MAX) {
             ++$this->item->quality;
@@ -56,7 +68,10 @@ class ItemUpdater
         return $this->item;
     }
 
-    protected function downQuality()
+    /**
+     * @return Item
+     */
+    protected function downQuality(): Item
     {
         if ($this->item->quality > Item::QUALITY_MIN) {
             --$this->item->quality;
@@ -65,7 +80,10 @@ class ItemUpdater
         return $this->item;
     }
 
-    protected function downSellIn()
+    /**
+     * @return Item
+     */
+    protected function downSellIn(): Item
     {
         --$this->item->sellIn;
 
