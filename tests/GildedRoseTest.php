@@ -3,7 +3,7 @@
 namespace Runroom\GildedRose\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Runroom\GildedRose\{GildedRose, Item};
+use Runroom\GildedRose\{factories\GildedRoseFactory, factories\ItemFactory, Item};
 
 class GildedRoseTest extends TestCase
 {
@@ -12,10 +12,10 @@ class GildedRoseTest extends TestCase
      */
     public function itemsDegradeQuality()
     {
-        $items = [new Item('', 1, 5)];
+        $items = [ItemFactory::create('', 1, 5)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(4, $items[0]->quality);
     }
@@ -25,10 +25,10 @@ class GildedRoseTest extends TestCase
      */
     public function itemsDegradeDoubleQualityOnceTheSellInDateHasPass()
     {
-        $items = [new Item('', -1, 5)];
+        $items = [ItemFactory::create('', -1, 5)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(3, $items[0]->quality);
     }
@@ -38,10 +38,10 @@ class GildedRoseTest extends TestCase
      */
     public function itemsCannotHaveNegativeQuality()
     {
-        $items = [new Item('', 0, 0)];
+        $items = [ItemFactory::create('', 0, 0)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(0, $items[0]->quality);
     }
@@ -51,10 +51,10 @@ class GildedRoseTest extends TestCase
      */
     public function agedBrieIncreasesQualityOverTime()
     {
-        $items = [new Item('Aged Brie', 0, 5)];
+        $items = [ItemFactory::create(Item::NAME_AGED, 0, 5)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(7, $items[0]->quality);
     }
@@ -64,10 +64,10 @@ class GildedRoseTest extends TestCase
      */
     public function qualityCannotBeGreaterThan50()
     {
-        $items = [new Item('Aged Brie', 0, 50)];
+        $items = [ItemFactory::create(Item::NAME_AGED, 0, 50)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(50, $items[0]->quality);
     }
@@ -77,10 +77,10 @@ class GildedRoseTest extends TestCase
      */
     public function sulfurasDoesNotChange()
     {
-        $items = [new Item('Sulfuras, Hand of Ragnaros', 10, 10)];
+        $items = [ItemFactory::create(Item::NAME_SULFURAS, 10, 10)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals(10, $items[0]->sellIn);
         $this->assertEquals(10, $items[0]->quality);
@@ -105,10 +105,10 @@ class GildedRoseTest extends TestCase
      */
     public function backstageQualityIncreaseOverTimeWithCertainRules($sellIn, $quality, $expected)
     {
-        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', $sellIn, $quality)];
+        $items = [ItemFactory::create(Item::NAME_BACKSTAGE, $sellIn, $quality)];
 
-        $gilded_rose = new GildedRose($items);
-        $gilded_rose->updateQuality();
+        $gildedRose = GildedRoseFactory::create($items);
+        $gildedRose->updateQuality();
 
         $this->assertEquals($expected, $items[0]->quality);
     }

@@ -33,11 +33,11 @@ class Item
     /**
      * Item constructor.
      *
-     * @param $name
-     * @param $sellIn
-     * @param $quality
+     * @param string $name
+     * @param int $sellIn
+     * @param int $quality
      */
-    public function __construct($name, $sellIn, $quality)
+    public function __construct(string $name, int $sellIn, int $quality)
     {
         $this->name = $name;
         $this->sellIn = $sellIn;
