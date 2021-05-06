@@ -13,9 +13,9 @@ class ItemOrganizer
         } elseif ($item->name == Item::NAME_AGED) {
             //
         } else {
-            //
+            $updater = new ItemUpdater($item);
         }
 
-        // return //
+        return $updater;
     }
 }

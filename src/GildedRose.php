@@ -27,7 +27,7 @@ class GildedRose
         $this->items = $items;
     }
 
-    public function updateQuality()
+    public function updateQuality(): void
     {
         foreach ($this->items as $item) {
             $this->updateItem($item);
@@ -39,7 +39,7 @@ class GildedRose
         $organizer = new ItemOrganizer();
         $itemOrganized = $organizer->categorize($item);
 
-        // update...
+        return $itemOrganized->update();
     }
 
     public function updateQualityOld()
