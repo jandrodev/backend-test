@@ -53,6 +53,7 @@ class GildedRose
                 }
             } elseif ($item->quality < Item::QUALITY_MAX) {
                 $item->quality = $item->quality + 1;
+
                 if ($item->name == Item::NAME_BACKSTAGE) {
                     if ($item->sellIn < Item::SELL_IN_MAX) {
                         if ($item->quality < Item::QUALITY_MAX) {

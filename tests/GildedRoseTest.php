@@ -15,7 +15,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create('', 1, 5)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQualityOld();
+        $gildedRose->updateQuality();
 
         $this->assertEquals(4, $items[0]->quality);
     }

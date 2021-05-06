@@ -6,6 +6,6 @@ class ItemSulfurasUpdater extends ItemUpdater
 {
     public function update()
     {
-        return parent::update();
+        // Quality not change (only down)
     }
 }
