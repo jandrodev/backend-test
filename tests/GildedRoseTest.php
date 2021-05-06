@@ -15,7 +15,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create('', 1, 5)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(4, $items[0]->quality);
     }
@@ -28,7 +28,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create('', -1, 5)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(3, $items[0]->quality);
     }
@@ -41,7 +41,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create('', 0, 0)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(0, $items[0]->quality);
     }
@@ -54,7 +54,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create(Item::NAME_AGED, 0, 5)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(7, $items[0]->quality);
     }
@@ -67,7 +67,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create(Item::NAME_AGED, 0, 50)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(50, $items[0]->quality);
     }
@@ -80,7 +80,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create(Item::NAME_SULFURAS, 10, 10)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals(10, $items[0]->sellIn);
         $this->assertEquals(10, $items[0]->quality);
@@ -108,7 +108,7 @@ class GildedRoseTest extends TestCase
         $items = [ItemFactory::create(Item::NAME_BACKSTAGE, $sellIn, $quality)];
 
         $gildedRose = GildedRoseFactory::create($items);
-        $gildedRose->updateQuality();
+        $gildedRose->updateQualityOld();
 
         $this->assertEquals($expected, $items[0]->quality);
     }

@@ -30,6 +30,21 @@ class GildedRose
     public function updateQuality()
     {
         foreach ($this->items as $item) {
+            $this->updateItem($item);
+        }
+    }
+
+    public function updateItem($item)
+    {
+        $organizer = new ItemOrganizer();
+        $itemOrganized = $organizer->categorize($item);
+
+        // update...
+    }
+
+    public function updateQualityOld()
+    {
+        foreach ($this->items as $item) {
             if ($item->name != Item::NAME_AGED and $item->name != Item::NAME_BACKSTAGE) {
                 if ($item->quality > Item::QUALITY_MIN) {
                     if ($item->name != Item::NAME_SULFURAS) {
