@@ -7,22 +7,21 @@ use Runroom\GildedRose\Updaters\{ItemAgedUpdater, ItemBackstageUpdater, ItemSulf
 class ItemOrganizer
 {
     /**
-     * @param $item
+     * @param Item $item
      *
      * @return ItemAgedUpdater|ItemBackstageUpdater|ItemSulfurasUpdater|ItemUpdater
      */
-    public function categorize($item)
+    public function categorize(Item $item)
     {
-        if ($item->name == Item::NAME_SULFURAS) {
-            $updater = new ItemSulfurasUpdater($item);
-        } elseif ($item->name == Item::NAME_BACKSTAGE) {
-            $updater = new ItemBackstageUpdater($item);
-        } elseif ($item->name == Item::NAME_AGED) {
-            $updater = new ItemAgedUpdater($item);
-        } else {
-            $updater = new ItemUpdater($item);
+        switch ($item->name) {
+            case Item::NAME_SULFURAS:
+                return new ItemSulfurasUpdater($item);
+            case Item::NAME_BACKSTAGE:
+                return new ItemBackstageUpdater($item);
+            case Item::NAME_AGED:
+                return new ItemAgedUpdater($item);
+            default:
+                return new ItemUpdater($item);
         }
-
-        return $updater;
     }
 }

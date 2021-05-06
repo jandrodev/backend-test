@@ -14,9 +14,9 @@ class ItemUpdater
     /**
      * ItemUpdater constructor.
      *
-     * @param $item
+     * @param Item $item
      */
-    public function __construct($item)
+    public function __construct(Item $item)
     {
         $this->item = $item;
     }

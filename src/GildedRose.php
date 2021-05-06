@@ -12,9 +12,9 @@ class GildedRose
     /**
      * GildedRose constructor.
      *
-     * @param $items
+     * @param array $items
      */
-    public function __construct($items)
+    public function __construct(array $items)
     {
         $this->setItems($items);
     }
@@ -35,11 +35,11 @@ class GildedRose
     }
 
     /**
-     * @param $item
+     * @param Item $item
      *
      * @return Item
      */
-    public function updateItem($item): Item
+    public function updateItem(Item $item): Item
     {
         $organizer = new ItemOrganizer();
         $itemOrganized = $organizer->categorize($item);
