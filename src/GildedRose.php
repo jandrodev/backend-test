@@ -4,15 +4,15 @@ namespace Runroom\GildedRose;
 
 class GildedRose
 {
-    /*
-     * @var array
+    /**
+     * @var Item[]
      */
     private array $items;
 
     /**
      * GildedRose constructor.
      *
-     * @param array $items
+     * @param array<Item> $items
      */
     public function __construct(array $items)
     {

@@ -2,12 +2,12 @@
 
 namespace Runroom\GildedRose\factories;
 
-use Runroom\GildedRose\GildedRose;
+use Runroom\GildedRose\{GildedRose, Item};
 
 class GildedRoseFactory
 {
     /**
-     * @param array $items
+     * @param array<Item> $items
      *
      * @return GildedRose
      */

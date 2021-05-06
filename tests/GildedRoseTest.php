@@ -9,8 +9,7 @@ class GildedRoseTest extends TestCase
 {
     public function testItemsDegradeQuality(): void
     {
-        $items = [ItemFactory::create('', 1, 5)];
-
+        $items = ItemFactory::create('', 1, 5)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -19,8 +18,7 @@ class GildedRoseTest extends TestCase
 
     public function testItemsDegradeDoubleQualityOnceTheSellInDateHasPass(): void
     {
-        $items = [ItemFactory::create('', -1, 5)];
-
+        $items = ItemFactory::create('', -1, 5)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -29,8 +27,7 @@ class GildedRoseTest extends TestCase
 
     public function testItemsCannotHaveNegativeQuality(): void
     {
-        $items = [ItemFactory::create('', 0, 0)];
-
+        $items = ItemFactory::create('', 0, 0)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -39,8 +36,7 @@ class GildedRoseTest extends TestCase
 
     public function testAgedBrieIncreasesQualityOverTime(): void
     {
-        $items = [ItemFactory::create(Item::NAME_AGED, 0, 5)];
-
+        $items = ItemFactory::create(Item::NAME_AGED, 0, 5)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -49,8 +45,7 @@ class GildedRoseTest extends TestCase
 
     public function testQualityCannotBeGreaterThan50(): void
     {
-        $items = [ItemFactory::create(Item::NAME_AGED, 0, 50)];
-
+        $items = ItemFactory::create(Item::NAME_AGED, 0, 50)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -59,8 +54,7 @@ class GildedRoseTest extends TestCase
 
     public function testSulfurasDoesNotChange(): void
     {
-        $items = [ItemFactory::create(Item::NAME_SULFURAS, 10, 10)];
-
+        $items = ItemFactory::create(Item::NAME_SULFURAS, 10, 10)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 
@@ -89,8 +83,7 @@ class GildedRoseTest extends TestCase
      */
     public function testBackstageQualityIncreaseOverTimeWithCertainRules(int $sellIn, int $quality, int $expected): void
     {
-        $items = [ItemFactory::create(Item::NAME_BACKSTAGE, $sellIn, $quality)];
-
+        $items = ItemFactory::create(Item::NAME_BACKSTAGE, $sellIn, $quality)->toArray();
         $gildedRose = GildedRoseFactory::create($items);
         $gildedRose->updateQuality();
 

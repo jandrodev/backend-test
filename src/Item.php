@@ -43,4 +43,12 @@ class Item
         $this->sellIn = $sellIn;
         $this->quality = $quality;
     }
+
+    /**
+     * @return Item[]
+     */
+    public function toArray(): array
+    {
+        return [$this];
+    }
 }
